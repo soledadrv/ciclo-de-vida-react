@@ -26,6 +26,9 @@ const genresAPIController = {
             }
                 res.json(respuesta);
             })
+        .catch(error => {
+            console.log(error);
+        })
     },
     
     'detail': (req, res) => {
