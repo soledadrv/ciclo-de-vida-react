@@ -20,7 +20,8 @@ class GenresInDb extends Component {
     constructor(){
         super()
         this.state = {
-            genres: []
+            genres: [],
+            bg: false,
         }
     }
 
@@ -33,17 +34,26 @@ class GenresInDb extends Component {
             console.log(err);
         })
     }
+
+    handlerMouseOver() {
+        this.setState({bg: true});
+    }
+
+    handlerMouseOut() {
+        this.setState({bg: false});
+    }
     
     render() {
+
         return (
             <React.Fragment>
                 {/*<!-- Categories in DB -->*/}
                 <div className="col-lg-6 mb-4">
                     <div className="card shadow mb-4">
                         <div className="card-header py-3">
-                            <h6 className="m-0 font-weight-bold text-gray-800">Genres in Data Base</h6>
+                            <h6 onMouseOver={() => this.handlerMouseOver()} onMouseOut={() => this.handlerMouseOut()} className="m-0 font-weight-bold text-gray-800">Genres in Data Base</h6>
                         </div>
-                        <div className="card-body">
+                        <div className={this.state.bg ? "card-body bg-secondary" : "card-body"}>
                             <div className="row">
                                 {
                                     this.state.genres !== [] ? this.state.genres.map((genre, index) => {
